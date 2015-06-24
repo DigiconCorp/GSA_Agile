@@ -17,6 +17,6 @@
 	
 	};
 	this.clientStorage= "main";
-	this.govdatakey="sZYzeySBCJ8LNRlgD352cCoxMF58MLYgYxWXQD9x";
+	this.govdatakey="YourKey";
 	
 }
