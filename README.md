@@ -17,7 +17,7 @@
 <br>
 <strong>To install the application, ssh login to your Ubuntu Server and run the following commands. The install script will download all necessary files from this repository and install the application and the railo server.</strong>
 <br>
-sudo wget -O install.sh https://raw.githubusercontent.com/DigiconCorp/Demo/master/src/install.sh
+sudo wget -O install.sh https://raw.githubusercontent.com/DigiconCorp/GSA_Agile/master/src/install.sh
 <br>
 sudo chmod 775 install.sh
 <br>
