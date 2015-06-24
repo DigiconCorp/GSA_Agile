@@ -12,7 +12,7 @@ sudo chmod 775 railo-4.2.1.008-pl0-linux-x64-installer.run
 
 if [ ! -f "Demo-master.zip" ]
 then
-	sudo wget -O Demo-master.zip  https://github.com/DigiconCorp/Demo/archive/master.zip
+	sudo wget -O Demo-master.zip  https://github.com/DigiconCorp/GSA_Agile/archive/master.zip
 fi
 sudo unzip -o Demo-master.zip  -d ./tmp
 sudo chmod 775 /tmp -R
