@@ -4,7 +4,7 @@
 
 #Demo install 
 <strong>Requirments</strong>
-<p>Below are a list of requirements that are neede in order to install and run the demo applicaion. </p>
+<p>Below are a list of requirements that are needed in order to install and run the demo applicaion. </p>
 1. Railo-4.2.1.008 - This application uses the Railo application server. Optionally it can be download from http://www.getrailo.org/index.cfm/download/ however the install.sh will automatically download detect if the file is missing and download it if necessary.
 <br>
 2. Ubuntu 14.04.1 - Install has been tested on this version but will may work on other versions of Ubuntu.
