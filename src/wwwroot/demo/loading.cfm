@@ -1,0 +1,1 @@
+<div style=" text-align: center" ><img src="images/ajax-loader.gif" class="pull_center"></img></div>

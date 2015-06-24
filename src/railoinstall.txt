@@ -1,0 +1,8 @@
+railopass=cfvr549
+installdir=/opt/railo
+tomcatport=8888
+tomcatshutdownport=8005
+tomcatajpport=8009
+systemuser=root
+startatboot=true
+installconn=false
