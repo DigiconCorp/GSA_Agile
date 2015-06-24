@@ -21,8 +21,8 @@
         <!--- Define arguments. --->
 	    <cfargument name="TargetPage" type="string" required="true" />
        <cfscript>
-      	application.govdatakey="sZYzeySBCJ8LNRlgD352cCoxMF58MLYgYxWXQD9x";
-		application.openFDAKey="D459BvLbpi9zAgGZNUh1uX6oSgAGSC7LffQKetlg";      	
+      		application.govdatakey="YourKey";
+		application.openFDAKey="YourKey";      	
       </cfscript>
         
         <!--- Include the requested page. --->
