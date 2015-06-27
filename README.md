@@ -25,3 +25,4 @@ sudo ./install.sh
 <br>
 <br>To access the system, use a web browser and access http://your_server_ip_or_dns:8888 or http://localhost:8888. For example if your server's ip address is 192.168.1.10 then you would go to  http://192.168.1.10:8888 
 
+Latest Verstion Updates 6/27/2015 11:24 am
