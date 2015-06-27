@@ -10,6 +10,7 @@
 		<title>GSA Agile Prototype</title>
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="js/bootstraptable/bootstrap-table.css" rel="stylesheet"> </link>	
 		<!-- Custom styles for this template -->
 		<link href="css/bootstrap-template.css" rel="stylesheet">
 		<link href="css/sticky-footer.css" rel="stylesheet">
@@ -56,6 +57,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<script src="js/ie10-viewport-bug-workaround.js"></script>
+			<script type="text/javascript" src="js/bootstraptable/bootstrap-table.js"></script>
 	</body>
 </html>
 <script>

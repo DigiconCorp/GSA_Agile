@@ -1,5 +1,5 @@
 <cfcomponent>
-	<cffunction name="GetCounts" returntype = "query">
+	<cffunction name="GetCounts" returntype = "query" access="remote">
 		<cfargument name="STR" >
 		<cfset theurl="https://api.fda.gov/drug/event.json?api_key=#application.openFDAKey#&search=#str#">
 		<cfhttp method="get" url="#theurl#"  result="patient">
