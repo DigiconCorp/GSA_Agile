@@ -5,14 +5,14 @@
 	<CFSET FDACOLLIST="SPL_ID,PRODUCT_NDC,IS_ORIGINAL_PACKAGER,ROUTE,SUBSTANCE_NAME,RXCUI,SPL_SET_ID,PACKAGE_NDC,PRODUCT_TYPE,GENERIC_NAME,MANUFACTURER_NAME,BRAND_NAME,APPLICATION_NUMBER">
 	<CFSET MasterCls="#COLLIST#,#FDACOLLIST#">
 	<cfset MasterCls=listsort(MasterCls,"TextNoCase", "ASC")>
-	<cfset enablelst="BRAND_NAME,GENERIC_NAME,MANUFACTURER_NAME">
-
+	<cfset enablelst="SUBSTANCE_NAME,GENERIC_NAME,BRAND_NAME">
+<cfif cgi.HTTP_USER_AGENT contains "mobile"><cfset enablelst="SUBSTANCE_NAME"></cfif>
 	
 	<div id="mainSearchDiv">
 		<div id="toolbar2" >
-			<div class="form-inline" role="form">
+			<!---<div class="form-inline" role="form">
 				<div class="form-group">
-					<label class="control-label" for="FieldSearch">Search in:</label>
+					<label class="control-label" for="FieldSearch"></label>
 		    		<select class="form-control" id="FieldSearch"  style=" width:160px" name="FieldSearch"  onchange="$('#SearchResultsGrid').bootstrapTable('refresh');">
 		           		<option value="All">ALL FIELDS</option>
 			             <cfloop list="#MasterCls#" index="cc">
@@ -20,7 +20,13 @@
 						</cfloop>
 					</select>
 		        </div>					
-			</div>	
+			</div>	--->
+			<select class="form-control" id="FieldSearch"  style=" width:160px" name="FieldSearch"  onchange="$('#SearchResultsGrid').bootstrapTable('refresh');">
+		           		<option value="All">ALL FIELDS</option>
+			             <cfloop list="#MasterCls#" index="cc">
+							<cfoutput><option value="#lcase(cc)#">#replace(cc,"_"," ","all")#</option></cfoutput>
+						</cfloop>
+					</select>
 		</div>
 		<table 
 			id="SearchResultsGrid"  
@@ -39,6 +45,7 @@
 			data-search-align="left"
 			data-page-size="10"
 			data-sortable="false"
+		data-card-view="false"
 			data-striped="true">
 		    <thead>
 				<tr>
@@ -69,10 +76,11 @@
 	
 	OpenDetailView = function(ID)
 		{
+			showItem( $("#detailDiv"));
+				hideItem( $("#mainSearchDiv"));
 			var detailUrl="detailview.cfm?id="+ID;
 			$("#detailDiv").load(detailUrl,function(){
-				showItem( $("#detailDiv"));
-				hideItem( $("#mainSearchDiv"));
+				
 			});
 		}	
 	
