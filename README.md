@@ -1,5 +1,5 @@
 
-<strong>Demo URL:http://66.23.117.40/demo/</strong>
+<strong>Demo URL:<a href="http://gsa-agile.digicon.com/demo/>http://gsa-agile.digicon.com/demo/</a></strong>
 
 
 #Demo install 
