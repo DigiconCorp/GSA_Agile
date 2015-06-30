@@ -1,3 +1,4 @@
+	<cfparam  name="search" default="">
 	<Style>
 		.callout-info {
 		    border-left-color: #1b809e;
@@ -9,6 +10,10 @@
 		    border-left-width: 1px;
 		    border-radius: 3px;
 		}
+	.myhighlight {
+    background-color:yellow;
+    text-transform: capitalize;
+    }
 	</Style>
 	<cfset noshowlist="ID,LICENSE,DISCLAIMER,BRAND_NAME,PACKAGE_LABEL_PRINCIPAL_DISPLAY_PANEL,CLINICAL_STUDIES,LIMIT,ROUTE,SKIP,TOTAL,VERSION,APPLICATION_NUMBER,EFFECTIVE_TIME,LAST_UPDATED,PACKAGE_NDC,PRODUCT_NDC,RXCUI">
 	<a class="btn btn-primary" id="Ptop" href="javascript:void(0);"  onclick="CloseDetailView()" role="button">Back</a>
@@ -16,6 +21,8 @@
 	<cfinvoke component="labels" method="SearchDetailLabel" returnvariable="resultset">
 		<cfinvokeargument name="strf" value="#url.id#">
 	</cfinvoke>
+	
+
 	<cfset shorlist="">
 	<cfset medlist="">
 	<cfset medlist2="">
@@ -57,8 +64,8 @@
 			  		<cfoutput>
 						<cfif counter eq 1><div class="row"></cfif>
 						 	<div class="col-sm-6">
-						 		<h4>#replace(c,"_"," ","all")# </h4>
-						 		<div  class="callout callout-info">#data#</div>
+						 		<h4 style="text-transform: capitalize;">#replace(lcase(c),"_"," ","all")# </h4>
+						  		<div  class="callout callout-info">#highlightIT(search,data)#</div>
 						 		<br><br>
 						 	</div>
 						<cfif counter gte 2 or (counter eq listlen(shorlist))>
@@ -83,8 +90,9 @@
 						</div>
 						<div class="row"></cfif>
 				 	<div class="col-sm-12">
-				 		<h4>#replace(c,"_"," ","all")# </h4>
-				 		<div class="callout callout-info" >#data#</div>
+				 			<h4 style="text-transform: capitalize;">#replace(lcase(c),"_"," ","all")# </h4>
+				 		
+				 		<div class="callout callout-info" >#highlightIT(search,data)#</div>
 				 		<br><br>			 	
 				 	</div>
 					<cfif counter gte 1  or (counter eq listlen(medlist))></div>
@@ -102,6 +110,18 @@
 			
 		</div>
 	</cfoutput>	
+	
+	<cffunction name="highlightIT" returntype="String" returnformat= "plain">
+		<cfargument name="term">
+		<cfargument name="text">
+		<CFSET NEWTEXT=TEXT>
+		<cfloop list="#term#" index="word"  delimiters="~,+">
+				<cfset NEWTEXT=replaceNoCase(NEWTEXT, word, '<span class="myhighlight">#word#</span>', 'all')>
+		</cfloop>
+		<cfreturn NEWTEXT>
+	</cffunction>
+	
+	
 	<script>
 		<cfoutput>var Col_val='#urlencodedformat(resultset.pharm_class_epc)#';</cfoutput>
 		$(function (){

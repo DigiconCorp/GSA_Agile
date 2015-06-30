@@ -8,6 +8,7 @@
 		<cfargument name="SEARCH" default="">
 		<cfargument name="limit" default="10">	
 		<cfargument name="FieldSearch" default="">
+		<CFSET OSEARCH=REPLACE(SEARCH,"+","~","ALL")>
 		<cfset skip=offset>
     	<cfif offset eq 0>
     		<cfset page = 1>
@@ -42,7 +43,7 @@
 			<cfhttp method="get" url="#theurl#" resolveurl="true">
 			<cftry>
 				<cfset getResults=deserializeJSON(cfhttp.FileContent,true)>
-				<cfset getResultsFinal=this.GetResultData(getResults)>
+				<cfset getResultsFinal=this.GetResultData(getResults,Osearch)>
 				<cfcatch>
 					<cfset getResultsFinal=querynew('ID,BRAND_NAME,Total')>
 				</cfcatch>
@@ -56,11 +57,12 @@
     <!--- -***********************************************************--->	
 	<cffunction name="SearchDetailLabel" access="remote" returntype="Query">
 		<cfargument name="strf" default="">
+		<cfargument name="Search" default="">
 		<cfset theurls="https://api.fda.gov/drug/label.json?api_key=#application.openFDAKey#&search=id:#strf#&limit=1&skip=0">
 		<cfhttp method="get" url="#theurls#" resolveurl="true">
 			<cftry>
 				<cfset getResultss = deserializeJSON(cfhttp.FileContent, true)>
-				<cfset getResultssFinal = this.GetResultData(getResultss)>
+				<cfset getResultssFinal = this.GetResultData(getResultss,Search)>
 			<cfcatch>
 				<cfset getResultssFinal = querynew('ID,BRAND_NAME,Total')>
 				<cfset queryaddrow(getResultssFinal)>
@@ -75,6 +77,7 @@
     <!--- -***********************************************************--->		
 	<cffunction  name="GetResultData" returntype= "Query" description="Flattens the openFDA structer into a query result for each ID.">
 		<cfargument name="RawJSONData">
+			<cfargument name="Search">
 		<cfset results=RawJSONData.results>
 		<cftry>
 			<cfset MetaColls="disclaimer,license,last_updated,skip,limit,total">
@@ -82,9 +85,10 @@
 			<cfset collist="description,set_id,indications_and_usage,keep_out_of_reach_of_children,dosage_and_administration,purpose,version,id,pregnancy_or_breast_feeding,package_label_principal_display_panel,active_ingredient,inactive_ingredient,effective_time,spl_product_data_elements,warnings">
 			<cfset collist="set_id,id,version,effective_time,drug_abuse_and_dependence,controlled_substance,abuse,dependence,overdosage,adverse_reactions,drug_interactions,drug_and_or_laboratory_test_interactions,clinical_pharmacology,mechanism_of_action,pharmacodynamics,pharmacokinetics,indications_and_usage,contraindications,dosage_and_administration,dosage_forms_and_strengths,purpose,description,active_ingredient,inactive_ingredient,spl_product_data_elements,spl_patient_package_insert,information_for_patients,information_for_owners_or_caregivers,instructions_for_use,ask_doctor,ask_doctor_or_pharmacist,do_not_use,keep_out_of_reach_of_children,other_safety_information,questions,stop_use,when_using,patient_medication_information,spl_medguide,use_in_specific_populations,pregnancy,teratogenic_effects,nonteratogenic_effects,labor_and_delivery,nursing_mothers,pregnancy_or_breast_feeding,pediatric_use,geriatric_use,nonclinical_toxicology,carcinogenesis_and_mutagenesis_and_impairment_of_fertility,animal_pharmacology_and_or_toxicology,clinical_studies,references,how_supplied,storage_and_handling,safe_handling_warning,boxed_warning,warnings_and_precautions,user_safety_warnings,precautions,warnings,general_precautions,laboratory_tests,recent_major_changes,microbiology,package_label_principal_display_panel,spl_unclassified_section">
 			<cfset FDAcollist="spl_id,product_ndc,is_original_packager,route,substance_name,rxcui,spl_set_id,package_ndc,product_type,generic_name,manufacturer_name,brand_name,application_number,pharm_class_epc">
-			<cfset retunrResultdata=querynew("debug,#MetaColls#,#collist#,#FDAcollist#")>
+			<cfset retunrResultdata=querynew("Search,#MetaColls#,#collist#,#FDAcollist#")>
 				<cfloop from="1" to="#arraylen(results)#" index="r">
 					<cfset queryaddrow(retunrResultdata)>
+					<cfset querySetcell(retunrResultdata,"Search",arguments.Search)>
 						<cfloop list="#collist#" index="col">
 							<cftry>
 	                        	<cfif isarray(results[r][col])>

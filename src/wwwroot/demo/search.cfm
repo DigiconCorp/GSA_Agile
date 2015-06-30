@@ -56,7 +56,7 @@
 	</div>
 	<div id="detailDiv" class="hidden"></div>		
 	<script>
-		$('#SearchResultsGrid').bootstrapTable({}).on('click-row.bs.table', function (e, DATA, args) { OpenDetailView(DATA.ID); });       
+		$('#SearchResultsGrid').bootstrapTable({}).on('click-row.bs.table', function (e, DATA, args) { OpenDetailView(DATA.ID,DATA.SEARCH); });       
 		function Formatter_default(value, row, index)
 			{
 				return'<span  class="edit" title="Edit"> '+value+' </span>'
@@ -69,11 +69,13 @@
 				return params;
 			}
 		
-		OpenDetailView = function(ID)
+		OpenDetailView = function(ID,SEARCH)
 			{
+				
+				
 				showItem( $("#detailDiv"));
 					hideItem( $("#mainSearchDiv"));
-				var detailUrl="detailview.cfm?id="+ID;
+				var detailUrl="detailview.cfm?id="+ID+'&search='+encodeURI(SEARCH);
 				$("#detailDiv").load(detailUrl,function(){
 					
 				});
