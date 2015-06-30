@@ -1,12 +1,14 @@
 <cfcomponent>
+	<!--- -***********************************************************--->
+    <!--- -**********************  GetCounts   ***********************--->
+    <!--- -***********************************************************--->	
 	<cffunction name="GetCounts" returntype = "any" access="remote">
 		<cfargument name="STR" >
-		<cfset theurl="https://api.fda.gov/drug/event.json?api_key=#application.openFDAKey#&search=#str#&count=patient.reaction.reactionmeddrapt.exact">
+		<cfargument name="countfield" required="false" default="patient.reaction.reactionmeddrapt" >
+		<cfset theurl="https://api.fda.gov/drug/event.json?api_key=#application.openFDAKey#&search=#str#&count=#countfield#.exact">
 		<cfhttp method="get" url="#theurl#"  result="patient">
-		<cfset getResults=deserializeJSON(patient.FileContent)><!---	--->
+		<cfset getResults=deserializeJSON(patient.FileContent)>
 		<cfset returndata=querynew("Term,Count")>
-		
-		
 		<cftry>
 			<cfif arraylen(getResults.results)>
 				<cfloop from="1" to="#arraylen(getResults.results)#" index="I">
@@ -16,7 +18,7 @@
 				<cfset querysetcell(returndata,'Count',data.Count)>
 				</cfloop>
 			</cfif>
-		<cfcatch><!---<cfset queryaddrow(returndata)> 	<cfset querysetcell(returndata,'Term',cfcatch.Message)>---></cfcatch>
+		<cfcatch></cfcatch>
 		</cftry>
 		<cfreturn returndata>		
 	</cffunction>

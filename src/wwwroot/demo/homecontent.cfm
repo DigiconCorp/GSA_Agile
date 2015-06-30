@@ -1,8 +1,12 @@
 <div class="container">
-	<h1>openFDA API</h1>
-	<p>Below is a an example of using the openFDA Api to retreive infromation about information on drug labels.</p>
-	<div id="resultsdiv" class="container container-responsive"></div>
+	<div>
+		<h1>Drug Label Search</h1>
+		<h3>GSA Agile BPA RFQ:RFQ993471 Prototype</h3>
+		<p>Search for words or phrases in the openFDA API Drug label records. 
+	</div>	
+	<div id="resultsdiv"></div>
 </div>
+
 <script>
 	hideItem = function (e)
 		{
@@ -13,5 +17,5 @@
 		{
 			$(e).removeClass('hidden');
 		} 
-	$("#resultsdiv").load('searchresults.cfm');		
+	$("#resultsdiv").load('search.cfm');		
 </script>

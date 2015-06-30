@@ -35,7 +35,6 @@
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="javascript:void(0)" onclick="loadcontent('about.cfm');">About</a></li>
-					<li><a href="javascript:void(0)" onclick="loadcontent('contact.cfm');">Contact</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 	      </div>
@@ -57,13 +56,13 @@
 		<script src="js/bootstrap.min.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<script src="js/ie10-viewport-bug-workaround.js"></script>
-			<script type="text/javascript" src="js/bootstraptable/bootstrap-table.js"></script>
+		<script type="text/javascript" src="js/bootstraptable/bootstrap-table.js"></script>
 	</body>
 </html>
 <script>
     /* Disable caching of AJAX responses   */
 	$.ajaxSetup ({cache: false}); 
-	
+
 	loadcontent = function (theurl)
 	{
 		$(".navbar-collapse.in").collapse('hide');

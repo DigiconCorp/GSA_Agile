@@ -1,36 +1,39 @@
 <cfcomponent>
 	<cfparam name="ListDelimiter" default="~">
+	<!--- -***********************************************************--->
+    <!--- -**********************  SearchLabels   ********************--->
+    <!--- -***********************************************************--->	
 	<cffunction name="SearchLabels" access="remote" returnformat="plain" returntype="string">
 		<cfargument name="skip">
 		<cfargument name="SEARCH" default="">
 		<cfargument name="limit" default="10">	
 		<cfargument name="FieldSearch" default="">
 		<cfset skip=offset>
-		<cfif offset eq 0>
-			<cfset page=1>
-			<cfelse>
-			 <cfset page=offset+1/limit>
-		</cfif>
-				<cfset str=search>
-				<cfif FieldSearch neq "All">
-					<cfset AppendSTR="">
-					<cfloop list="#str#" index="String" delimiters="+">
-						<cfoutput>
-							<cfset TempStr="#FieldSearch#:""#trim(String)#""">
-							<cfset AppendSTR=listappend(AppendSTR,TempStr,"~")>
-						</cfoutput>
-					</cfloop>					
-					<cfset str=replace(AppendSTR,"~","+","all")>					
-				<cfelse>
-					<cfset AppendSTR="">
-					<cfloop list="#str#" index="String" delimiters="+">
-						<cfoutput>
-							<cfset TempStr="(""#trim(String)#"")">
-							<cfset AppendSTR=listappend(AppendSTR,TempStr,"~")>
-						</cfoutput>
-					</cfloop>					
-					<cfset str=replace(AppendSTR,"~","+","all")>
-				</cfif>				
+    	<cfif offset eq 0>
+    		<cfset page = 1>
+    	<cfelse>
+    		<cfset page = offset + 1 / limit>
+    	</cfif>
+    	<cfset str = search>
+    	<cfif FieldSearch neq "All">
+    		<cfset AppendSTR = "">
+    		<cfloop LIST="#str#" INDEX="String" DELIMITERS="+">
+    			<cfoutput>
+    				<cfset TempStr = "#FieldSearch#:""#trim(String)#""">
+    				<cfset AppendSTR = listappend(AppendSTR, TempStr, "~")>
+    			</cfoutput>
+    		</cfloop>
+    		<cfset str = replace(AppendSTR, "~", "+", "all")>
+    	<cfelse>
+    		<cfset AppendSTR = "">
+    		<cfloop LIST="#str#" INDEX="String" DELIMITERS="+">
+    			<cfoutput>
+    				<cfset TempStr = "(""#trim(String)#"")">
+    				<cfset AppendSTR = listappend(AppendSTR, TempStr, "~")>
+    			</cfoutput>
+    		</cfloop>
+    		<cfset str = replace(AppendSTR, "~", "+", "all")>
+    	</cfif>			
 		<cfif len(search) eq 0>	
 			<cfset getResultsFinal=querynew('ID,BRAND_NAME,Total')>
 		<cfelse>
@@ -48,35 +51,28 @@
 		<cfreturn JSONGrid( getResultsFinal, page, limit,val(getResultsFinal.total) )>
 	</cffunction>
 
-
-
-
-<cffunction name="SearchDetailLabel" access="remote" returntype="Query">
+	<!--- -***********************************************************--->
+    <!--- -*******************  SearchDetailLabel   ******************--->
+    <!--- -***********************************************************--->	
+	<cffunction name="SearchDetailLabel" access="remote" returntype="Query">
 		<cfargument name="strf" default="">
-			<cfset theurls="https://api.fda.gov/drug/label.json?api_key=#application.openFDAKey#&search=id:#strf#&limit=1&skip=0">
-			<cfhttp method="get" url="#theurls#" resolveurl="true">
+		<cfset theurls="https://api.fda.gov/drug/label.json?api_key=#application.openFDAKey#&search=id:#strf#&limit=1&skip=0">
+		<cfhttp method="get" url="#theurls#" resolveurl="true">
 			<cftry>
-				<cfset getResultss=deserializeJSON(cfhttp.FileContent,true)>
-				<cfset getResultssFinal=this.GetResultData(getResultss)>
-				<cfcatch>
-					<cfset getResultssFinal=querynew('ID,BRAND_NAME,Total')>
-					<cfset queryaddrow(getResultssFinal)>
-					<cfset querysetcell(getResultssFinal,"id",cfcatch.Message)>
-				</cfcatch>
-			</cftry><!------>
-
+				<cfset getResultss = deserializeJSON(cfhttp.FileContent, true)>
+				<cfset getResultssFinal = this.GetResultData(getResultss)>
+			<cfcatch>
+				<cfset getResultssFinal = querynew('ID,BRAND_NAME,Total')>
+				<cfset queryaddrow(getResultssFinal)>
+				<cfset querysetcell(getResultssFinal, "id", cfcatch.Message)>
+			</cfcatch>
+			</cftry>
 		<cfreturn getResultssFinal>
-</cffunction>
-
-
-
-
-
-
-
+	</cffunction>
 	
-
-
+	<!--- -***********************************************************--->
+    <!--- -**********************   GetResultData   ******************--->
+    <!--- -***********************************************************--->		
 	<cffunction  name="GetResultData" returntype= "Query" description="Flattens the openFDA structer into a query result for each ID.">
 		<cfargument name="RawJSONData">
 		<cfset results=RawJSONData.results>
@@ -85,8 +81,8 @@
 			<cfset metaDataQuery=this.GetMetaData(RawJSONData.meta)>
 			<cfset collist="description,set_id,indications_and_usage,keep_out_of_reach_of_children,dosage_and_administration,purpose,version,id,pregnancy_or_breast_feeding,package_label_principal_display_panel,active_ingredient,inactive_ingredient,effective_time,spl_product_data_elements,warnings">
 			<cfset collist="set_id,id,version,effective_time,drug_abuse_and_dependence,controlled_substance,abuse,dependence,overdosage,adverse_reactions,drug_interactions,drug_and_or_laboratory_test_interactions,clinical_pharmacology,mechanism_of_action,pharmacodynamics,pharmacokinetics,indications_and_usage,contraindications,dosage_and_administration,dosage_forms_and_strengths,purpose,description,active_ingredient,inactive_ingredient,spl_product_data_elements,spl_patient_package_insert,information_for_patients,information_for_owners_or_caregivers,instructions_for_use,ask_doctor,ask_doctor_or_pharmacist,do_not_use,keep_out_of_reach_of_children,other_safety_information,questions,stop_use,when_using,patient_medication_information,spl_medguide,use_in_specific_populations,pregnancy,teratogenic_effects,nonteratogenic_effects,labor_and_delivery,nursing_mothers,pregnancy_or_breast_feeding,pediatric_use,geriatric_use,nonclinical_toxicology,carcinogenesis_and_mutagenesis_and_impairment_of_fertility,animal_pharmacology_and_or_toxicology,clinical_studies,references,how_supplied,storage_and_handling,safe_handling_warning,boxed_warning,warnings_and_precautions,user_safety_warnings,precautions,warnings,general_precautions,laboratory_tests,recent_major_changes,microbiology,package_label_principal_display_panel,spl_unclassified_section">
-			<cfset FDAcollist="spl_id,product_ndc,is_original_packager,route,substance_name,rxcui,spl_set_id,package_ndc,product_type,generic_name,manufacturer_name,brand_name,application_number">
-			<cfset retunrResultdata=querynew("#MetaColls#,#collist#,#FDAcollist#")>
+			<cfset FDAcollist="spl_id,product_ndc,is_original_packager,route,substance_name,rxcui,spl_set_id,package_ndc,product_type,generic_name,manufacturer_name,brand_name,application_number,pharm_class_epc">
+			<cfset retunrResultdata=querynew("debug,#MetaColls#,#collist#,#FDAcollist#")>
 				<cfloop from="1" to="#arraylen(results)#" index="r">
 					<cfset queryaddrow(retunrResultdata)>
 						<cfloop list="#collist#" index="col">
@@ -128,7 +124,9 @@
 	<cfreturn retunrResultdata>
 	</cffunction>
 	 
-	
+	<!--- -***********************************************************--->
+    <!--- -**********************   GetMetaData   ********************--->
+    <!--- -***********************************************************--->		
 	<cffunction  name="GetMetaData" returntype= "Query" description="Flattens the  openFDA meta structer into a simple single row query result.">
 		<cfargument name="meta">
 		<cftry>
@@ -144,11 +142,14 @@
 		</cftry>
 	<cfreturn retunrMetadata>
 	</cffunction>	
-		
+	
+	<!--- -***********************************************************--->
+    <!--- -**********************   GetOpenFdaData   *****************--->
+    <!--- -***********************************************************--->	
 	<cffunction  name="GetOpenFdaData" returntype="any" description="Flattens the  results.openFDA  structer into a simple single row query result.">
 		<cfargument name="argopenfda">
 		<cftry>
-			<cfset collistopenfda="spl_id,product_ndc,is_original_packager,route,substance_name,rxcui,spl_set_id,package_ndc,product_type,generic_name,manufacturer_name,brand_name,application_number">
+			<cfset collistopenfda="spl_id,product_ndc,is_original_packager,route,substance_name,rxcui,spl_set_id,package_ndc,product_type,generic_name,manufacturer_name,brand_name,application_number,pharm_class_epc">
 			<cfset retunrOpenFDAdata=querynew("#collistopenfda#")>
 			<cfset queryaddrow(retunrOpenFDAdata)>
 			<cfloop list="#collistopenfda#" index="colfdsl">
