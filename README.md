@@ -2,7 +2,11 @@
 <strong>Prototype URL:<a href="http://gsa-agile.digicon.com/demo/" target="new">http://gsa-agile.digicon.com/</a></strong>
 
 
-#Demo install 
+Digicon met all the evidence criteria listed above in the Design Pool and Development Pool and
+Attachment C includes at a minimum five of the labor categories from the Full Stack
+Pool categories.
+
+#Prototype install 
 <strong>Requirements</strong>
 <p>Below are a list of requirements that are needed in order to install and run the demo applicaion. </p>
 1. Railo-4.2.1.008 - This application uses the Railo application server. Optionally it can be download from http://www.getrailo.org/index.cfm/download/ however the install.sh will automatically download detect if the file is missing and download it if necessary.
