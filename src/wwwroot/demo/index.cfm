@@ -9,7 +9,8 @@
 		<link rel="icon" href="favicon.ico">
 		<title>GSA Agile Prototype</title>
 		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!---<link href="css/bootstrap.min.css" rel="stylesheet">--->
+		<link href="css/bootstrapHero.css" rel="stylesheet">
 		<link href="js/bootstraptable/bootstrap-table.css" rel="stylesheet"> </link>	
 		<!-- Custom styles for this template -->
 		<link href="css/bootstrap-template.css" rel="stylesheet">

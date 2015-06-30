@@ -7,7 +7,7 @@
 	<div id="mainSearchDiv">
 		<div class="well hidden" id="HelpDiv"><a href="javascript:void(0);" class="btn btn-info btn-xs pull-right"  id="srchHelpCloseLink" onclick="HideHelp()">Hide Help</a>
 			<b>Overview</b><br>
-			The default mode for the search find all records that contain the exact string across all fields in the record. 
+			The default mode for the search finds all records that contain the exact string across all fields in the record. 
 			<br>For example if you enter "Persistant Headache" all records containing that exact phrase will be returned.
 			<br>To search for "Persistant" and "Headache" you would enter "+Persistant +Headache" to search all records that contain both words individually.
 			<br><b>Additional Examples</b>
