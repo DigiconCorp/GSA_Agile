@@ -16,8 +16,8 @@ then
 fi
 sudo unzip -o Demo-master.zip  -d ./tmp
 sudo chmod 775 /tmp -R
-sudo cp -r ./tmp/Demo-master/src/railoinstall.txt ./
-sudo cp -r ./tmp/Demo-master/src/uninstall.sh ./
+sudo cp -r ./tmp/GSA_Agile-master/src/railoinstall.txt ./
+sudo cp -r ./tmp/GSA_Agile-master/src/uninstall.sh ./
 
 sudo chmod 775 railoinstall.txt
 sudo chmod 775 uninstall.sh
