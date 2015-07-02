@@ -12,7 +12,7 @@
 <br>
 
 <br>
-<strong>To install the application, ssh login to your Ubuntu Server and run the following commands. The install script will download all necessary files from this repository and install the application and the railo server.</strong>
+<strong>To install the application, ssh login to your Ubuntu Server or Docker Container running Ubuntu and run the following commands. The install script will download all necessary files from this repository and install the application and the railo server.</strong>
 <br>
 sudo wget -O install.sh https://raw.githubusercontent.com/DigiconCorp/GSA_Agile/master/src/install.sh
 <br>
@@ -22,4 +22,3 @@ sudo ./install.sh
 <br>
 <br>To access the system, use a web browser and access http://your_server_ip_or_dns:8888 or http://localhost:8888. For example if your server's ip address is 192.168.1.10 then you would go to  http://192.168.1.10:8888 
 
-Latest Verstion Updates 6/27/2015 11:24 am
