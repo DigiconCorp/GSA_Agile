@@ -15,12 +15,11 @@ then
 	sudo wget -O Demo-master.zip  https://github.com/DigiconCorp/GSA_Agile/archive/master.zip
 fi
 sudo unzip -o Demo-master.zip  -d ./tmp
-sudo chmod 775 /tmp -R
+sudo chmod 777 /tmp -R
+sudo chmod 777 /opt/railo/ -R
 sudo cp -r ./tmp/GSA_Agile-master/src/railoinstall.txt ./
 sudo cp -r ./tmp/GSA_Agile-master/src/uninstall.sh ./
-sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/demo /opt/railo/tomcat/webapps/ROOT/demo
-sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/index.cfm /opt/railo/tomcat/webapps/ROOT/
-sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/Application.cfc /opt/railo/tomcat/webapps/ROOT/
+
 
 sudo chmod 775 railoinstall.txt
 sudo chmod 775 uninstall.sh
@@ -32,7 +31,11 @@ sudo ./railo-4.2.1.008-pl0-linux-x64-installer.run --mode unattended --optionfil
 sudo chmod 775 /opt/railo/ -R
 
 echo "Installing Demo-master "
-sudo cp -r ./tmp/Demo-master/src/wwwroot/* /opt/railo/tomcat/webapps/ROOT/
+sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/* /opt/railo/tomcat/webapps/ROOT/
+echo sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/demo /opt/railo/tomcat/webapps/ROOT/demo
+echo sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/index.cfm /opt/railo/tomcat/webapps/ROOT/
+echo sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/Application.cfc /opt/railo/tomcat/webapps/ROOT/
+
 # sudo rm ./tmp -R
 echo "==================="
 echo "  Install Complete "
