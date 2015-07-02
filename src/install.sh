@@ -30,11 +30,8 @@ echo "==================="
 sudo ./railo-4.2.1.008-pl0-linux-x64-installer.run --mode unattended --optionfile railoinstall.txt
 sudo chmod 775 /opt/railo/ -R
 
-echo "Installing Demo-master "
+echo "Installing GSA_Agile-master "
 sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/* /opt/railo/tomcat/webapps/ROOT/
-echo sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/demo /opt/railo/tomcat/webapps/ROOT/demo
-echo sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/index.cfm /opt/railo/tomcat/webapps/ROOT/
-echo sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/Application.cfc /opt/railo/tomcat/webapps/ROOT/
 
 # sudo rm ./tmp -R
 echo "==================="
