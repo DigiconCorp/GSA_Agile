@@ -18,6 +18,9 @@ sudo unzip -o Demo-master.zip  -d ./tmp
 sudo chmod 775 /tmp -R
 sudo cp -r ./tmp/GSA_Agile-master/src/railoinstall.txt ./
 sudo cp -r ./tmp/GSA_Agile-master/src/uninstall.sh ./
+sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/demo /opt/railo/tomcat/webapps/ROOT/demo
+sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/index.cfm /opt/railo/tomcat/webapps/ROOT/
+sudo cp -r ./tmp/GSA_Agile-master/src/wwwroot/Application.cfc /opt/railo/tomcat/webapps/ROOT/
 
 sudo chmod 775 railoinstall.txt
 sudo chmod 775 uninstall.sh
