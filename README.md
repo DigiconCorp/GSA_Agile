@@ -68,7 +68,7 @@ properly working functionalities. </span></p>
 <p class=MsoNormal style='text-align:justify'>The DevOps engineer, technical
 architect, and front-end/back-end web developer ensured the technology met the
 requirements, as well as ensured efficiency of the application. The application
-is on the <a href="http://http://gsa-agile.digicon.com/demo/"><span class=SpellE>Digicon</span> Cloud</a>.
+is on the <a href="http://gsa-agile.digicon.com/demo/"><span class=SpellE>Digicon</span> Cloud</a>.
 The team reported on their progress, findings and impediments at each daily
 stand-up call. </p>
 
