@@ -120,7 +120,7 @@ style='mso-bidi-font-family:Arial'>containers</span></a><span style='mso-bidi-fo
 Arial'> or VMs. </span></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'>Continuous Deployment</b> – The <span class=SpellE>Digicon</span> team
+normal'>Continuous Integration</b> – The <span class=SpellE>Digicon</span> team
 used Docker <a
 href="https://github.com/DigiconCorp/GSA_Agile/blob/master/Install.md"><span
 style='color:windowtext;text-decoration:none;text-underline:none'>containers</span></a>
