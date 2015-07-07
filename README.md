@@ -5,7 +5,7 @@
 
 <p class=MsoNormal style='text-align:justify'>In response to the GSA RFQ, <span
 class=SpellE>Digicon</span> Corporation quickly brought together our team to
-evaluate the GSA Agile Challenge. <a href="https://github.com/DigiconCorp/GSA_Agile/blob/master/docs/evidence2b.docx">The Product Manager</a>
+evaluate the GSA Agile Challenge. <a href="https://github.com/DigiconCorp/GSA_Agile/blob/master/docs/evidence2b.docx?raw=true">The Product Manager</a>
 assigned roles for the effort, which included the Front-End/Back-End Developers,
 Technical Architect, DevOps Engineer, an Interaction Designer/User Researcher/Usability
 Tester, Agile Coach, and Business Analyst. The Agile Coach then scheduled daily
