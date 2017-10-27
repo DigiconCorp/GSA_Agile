@@ -1,1 +1,0 @@
-<p class="text-muted"><cfoutput>#dateformat(now(),"dddd m/d/yy")#</cfoutput></p>
